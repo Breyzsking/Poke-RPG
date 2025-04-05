@@ -1,0 +1,260 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #e0f7fa, #ffffff);
+}
+
+h1 {
+    color: #2e7d32;
+    margin-top: 50px;
+    text-align: center;
+    width: 100%;
+    font-size: 32px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.menu {
+    width: 200px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu a {
+    display: block;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.menu a:hover {
+    background-color: #34495e;
+    transform: scale(1.05);
+}
+.content {
+    flex-grow: 1;
+    padding: 80px 30px 30px 30px; /* espaço no topo para a navbar */
+    display: none;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+
+.content.active {
+    display: block;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container input, .form-container select, .form-container textarea {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+    width: 220px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.form-container button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #2e7d32;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.form-container button:hover {
+    background-color: #388e3c;
+    transform: scale(1.03);
+}
+
+.pokemon-types {
+    display: flex;
+    justify-content: space-between;
+    width: 460px;
+}
+
+.pokemon-types input {
+    width: 210px;
+}
+
+.pokemon-item {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemon-item input, .pokemon-item textarea {
+    width: 420px;
+}
+
+.pokemon-image {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemon-image input {
+    width: 320px;
+}
+
+.image-preview {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.image-preview img {
+    width: 200px;
+    height: auto;
+    margin-top: 10px;
+    border: 2px solid #2e7d32;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.attacks-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background-color: #fafafa;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.attacks-table th, .attacks-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.attacks-table th {
+    background-color: #2e7d32;
+    color: white;
+}
+
+.attacks-table input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.attacks-table input[type="text"], .attacks-table input[type="number"] {
+    width: 150px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.attacks-table td input[type="text"] {
+    text-align: center;
+}
+
+.nomedopersonagem [type="text"] {
+    width: 250px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #2c3e50;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 999;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.navbar a:hover {
+    background-color: #34495e;
+    transform: scale(1.05);
+}
+
+.pokemonInterface {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+    align-items: flex-start;
+}
+
+.pokemonMenu {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+}
+
+.pokemonMenuItem {
+    position: relative;
+}
+
+.pokemonMenuItem img {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.pokemonMenuItem span {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.painelFicha {
+    background-color: #f9f9f9;
+    padding: 20px;
+    flex-grow: 1;
+    border-radius: 8px;
+    min-width: 400px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.pokemon-img {
+    width: 120px;
+    height: 120px;
+}
+
+.ataque-box {
+    background-color: #f0f0f0;
+    padding: 6px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
