@@ -1,1 +1,639 @@
-# Poke-RPG
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>PokeRPG</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>PokeRPG</h1>
+
+    <nav class="navbar">
+        <a href="#" onclick="showContent('criarFicha')">Criar Ficha</a>
+        <a href="#" onclick="showContent('carregarFicha')">Carregar Ficha</a>
+        <a href="#" onclick="showContent('criarPokemon')">Criar Pokémon</a>
+        <a href="#" onclick="showContent('carregarPokemon')">Carregar Pokémon</a>
+    </nav>
+
+    <!-- Criar Ficha do Treinador -->
+    <div class="content criarFicha">
+        <h2>Criar Ficha do Treinador</h2>
+        <label>Nome: <input type="text" id="nomedopersonagem"></label><br>
+        <label>Idade: <input type="number" id="idade"></label><br>
+        <label>Gênero: <input type="text" id="genero"></label><br>
+
+        <h3>Atributos</h3>
+        <label>Agilidade: <input type="number" id="agilidade"min="0"max="5"></label><br>
+        <label>Força: <input type="number" id="força" min="0"max="5"></label><br>
+        <label>Inteligência: <input type="number" id="inteligencia" min="0"max="5"></min></label><br>
+        <label>Vigor: <input type="number" id="vigor" min="0"max="5"></label><br>
+
+        <h3>Tipo Vinculado</h3>
+        <label>Tipo 1:
+            <select id="tipo1">
+                <option value="">--Selecione--</option>
+                <option value="Fogo">Fogo</option>
+                <option value="Água">Água</option>
+                <option value="Grama">Grama</option>
+                <option value="Elétrico">Elétrico</option>
+                <option value="Normal">Normal</option>
+                <option value="Metal">Metal</option>
+                <option value="Inseto">Inseto</option>
+                <option value="Voador">Voador</option>
+                <option value="Sombrio">Sombrio</option>
+                <option value="Fantasma">Fantasma</option>
+                <option value="Lutador">Lutador</option>
+                <option value="Fada">Fada</option>
+                <option value="Dragão">Dragão</option>
+                <option value="Pedra">Pedra</option>
+                <option value="Terrestre">Terrestre</option>
+                <option value="Gelo">Gelo</option>
+                <option value="Veneno">Veneno</option>
+            </select>
+        </label><br>
+
+        <label>Tipo 2:
+            <select id="tipo2">
+              <option value="">--Selecione--</option>
+                <option value="Fogo">Fogo</option>
+                <option value="Água">Água</option>
+                <option value="Grama">Grama</option>
+                <option value="Elétrico">Elétrico</option>
+                <option value="Normal">Normal</option>
+                <option value="Metal">Metal</option>
+                <option value="Inseto">Inseto</option>
+                <option value="Voador">Voador</option>
+                <option value="Sombrio">Sombrio</option>
+                <option value="Fantasma">Fantasma</option>
+                <option value="Lutador">Lutador</option>
+                <option value="Fada">Fada</option>
+                <option value="Dragão">Dragão</option>
+                <option value="Pedra">Pedra</option>
+                <option value="Terrestre">Terrestre</option>
+                <option value="Gelo">Gelo</option>
+                <option value="Veneno">Veneno</option>
+            </select>
+        </label><br>
+        <h3>Mochila</h3>
+<textarea id="mochila" rows="6" cols="40" placeholder="Adicione aqui os itens da mochila... (um por linha)"></textarea><br>
+
+        <button onclick="baixartreiner()">Salvar Ficha do Treinador</button>
+    </div>
+
+    <div class="content carregarFicha">
+        <h2>Carregar Ficha do Treinador</h2>
+        <label for="uploadTreinador">Arquivo da Ficha:</label>
+        <input type="file" id="uploadTreinador" accept=".json"><br><br>
+    
+        <div class="botoesTreinador">
+            <button onclick="carregarTreinador()">Carregar Ficha</button>
+            <button onclick="baixartreiner()">Salvar Ficha Editada</button>
+        </div>
+    </div>
+
+    <!-- Criar Pokémon -->
+    <div class="content criarPokemon">
+        <h1>Criar Pokémon</h1>
+        <div class="pokemon-image">
+            <input type="file" id="pokemonImagem" onchange="previewPokemonImagem(event)" />
+            <div id="pokemonImagemPreview" class="image-preview"></div>
+        </div>
+
+        <div class="form-container">
+            <input type="text" id="pokemonNome" placeholder="Nome do Pokémon" />
+            <select id="pokemonGenero">
+                <option value="macho">Macho</option>
+                <option value="femea">Fêmea</option>
+                <option value="indefinido">Indefinido</option>
+            </select>
+            <div class="pokemon-stats">
+                <input type="text" id="pokemonNivel" placeholder="Nível" />
+                <input type="text" id="pokemonExperiencia" placeholder="Experiência" />
+                <input type="text" id="pokemonFelicidade" placeholder="Felicidade" />
+                <input type="text" id="pokemonGmax" placeholder="G-max" />
+            </div>
+            <div class="pokemon-types">
+                <input type="text" id="pokemonTipo1" placeholder="Tipo 1" />
+                <input type="text" id="pokemonTipo2" placeholder="Tipo 2 (opcional)" />
+                <input type="text" id="pokemonTera" placeholder="Tera (opcional)" />
+            </div>
+
+            <input type="text" id="pokemonNatureza" placeholder="Natureza" />
+            <input type="text" id="pokemonHabilidade" placeholder="Habilidade" />
+
+            <div class="pokemon-item">
+                <input type="file" id="itemFoto" onchange="previewItemFoto(event)" />
+                <div id="itemFotoPreview" class="image-preview"></div>
+                <input type="text" id="itemNome" placeholder="Nome do Item" />
+                <textarea id="itemDescricao" placeholder="Descrição do Item" rows="4"></textarea>
+            </div>
+
+            <!-- Tabela de atributos e ataques virá na próxima parte -->
+            <h3>Atributos do Pokémon</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>HP</th><th>Atk</th><th>Def</th><th>SpA</th><th>SpD</th><th>Spd</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td><input type="number" id="pokemonHP" /></td>
+                        <td><input type="number" id="pokemonAtk" /></td>
+                        <td><input type="number" id="pokemonDef" /></td>
+                        <td><input type="number" id="pokemonSpA" /></td>
+                        <td><input type="number" id="pokemonSpD" /></td>
+                        <td><input type="number" id="pokemonSpd" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                    <tr>
+                        <th>EVsHP</th><th>EVsAtk</th><th>EVsDef</th><th>EVsSpA</th><th>EVsSpD</th><th>EVsSpd</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td><input type="number" id="pokemonHPEVs" /></td>
+                        <td><input type="number" id="pokemonAtkEVs" /></td>
+                        <td><input type="number" id="pokemonDefEVs" /></td>
+                        <td><input type="number" id="pokemonSpAEVs" /></td>
+                        <td><input type="number" id="pokemonSpDEVs" /></td>
+                        <td><input type="number" id="pokemonSpdEVs" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                    <tr>
+                        <th>IVsHP</th><th>IVsAtk</th><th>IVsDef</th><th>IVsSpA</th><th>IVsSpD</th><th>IVsSpd</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td><input type="number" id="pokemonHPIVs" /></td>
+                        <td><input type="number" id="pokemonAtkIVs" /></td>
+                        <td><input type="number" id="pokemonDefIVs" /></td>
+                        <td><input type="number" id="pokemonSpAIVs" /></td>
+                        <td><input type="number" id="pokemonSpDIVs" /></td>
+                        <td><input type="number" id="pokemonSpdIVs" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <thead>
+            <table>    
+                <tr>
+                    <th>BonûsHP</th><th>BonûsAtk</th><th>BonûsDef</th><th>BonûsSpA</th><th>BonûsSpD</th><th>BonûsSpd</th>
+                </tr>
+            </thead>
+                <tr>
+                    <td><input type="number" id="pokemonHPBonûs" /></td>
+                    <td><input type="number" id="pokemonAtkBonûs" /></td>
+                    <td><input type="number" id="pokemonDefBonûs" /></td>
+                    <td><input type="number" id="pokemonSpABonûs" /></td>
+                    <td><input type="number" id="pokemonSpDBonûs" /></td>
+                    <td><input type="number" id="pokemonSpdBonûs" /></td>
+                </tr>
+            </tbody>
+           </table>
+
+            <h3>Ataques</h3>
+            <div id="ataquesContainer">
+                <!-- Ataques adicionados aqui -->
+            </div>
+            <button onclick="adicionarAtaque()" max="4">Adicionar Ataque</button>
+            <button onclick="baixarPokemon()">Salvar Pokémon</button>
+        </div>
+    </div>
+    <div class="content carregarPokemon">
+        <h2>Carregar Pokémon</h2>
+        <input type="file" id="uploadPokemon" accept=".json">
+        <button onclick="carregarPokemon()">Carregar</button>
+    
+        <div class="pokemonInterface">
+            <!-- Lista lateral de Pokémons carregados -->
+            <div id="menuPokemons" class="pokemonMenu"></div>
+    
+            <!-- Painel onde a ficha será exibida -->
+            <div id="pokemonExibido" class="painelFicha"></div>
+            
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function showContent(sectionClass) {
+            const sections = document.querySelectorAll('.content');
+            sections.forEach(section => section.style.display = 'none');
+            const target = document.querySelector('.' + sectionClass);
+            if (target) target.style.display = 'block';
+        }
+
+        function previewPokemonImagem(event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const preview = document.getElementById('pokemonImagemPreview');
+                preview.innerHTML = `<img src="${reader.result}" alt="Imagem do Pokémon" />`;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function previewItemFoto(event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const preview = document.getElementById('itemFotoPreview');
+                preview.innerHTML = `<img src="${reader.result}" alt="Foto do Item" />`;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function adicionarAtaque() {
+            const container = document.getElementById('ataquesContainer');
+            const ataqueDiv = document.createElement('div');
+            ataqueDiv.classList.add('ataque');
+            ataqueDiv.innerHTML = `
+                <input type="text" placeholder="Nome" class="ataqueNome" />
+                <input type="text" placeholder="Dano" class="ataqueDano" />
+                <input type="text" placeholder="Tipo" class="ataqueTipo" />
+                <input type="text" placeholder="Classe" class="ataqueClasse" />
+                <textarea placeholder="Descrição" class="ataqueDescricao"></textarea>
+            `;
+            container.appendChild(ataqueDiv);
+        }
+        
+        function baixartreiner() {
+    const mochilaTexto = document.getElementById('mochila').value;
+    const mochilaLista = mochilaTexto.split('\n').filter(item => item.trim() !== "");
+
+    const treinador = {
+        nome: document.getElementById('nomedopersonagem').value,
+        idade: document.getElementById('idade').value,
+        genero: document.getElementById('genero').value,
+        atributos: {
+            agilidade: document.getElementById('agilidade').value,
+            forca: document.getElementById('força').value,
+            inteligencia: document.getElementById('inteligencia').value,
+            vigor: document.getElementById('vigor').value
+        },
+        tipoVinculado: {
+            tipo1: document.getElementById('tipo1').value,
+            tipo2: document.getElementById('tipo2').value
+        },
+        mochila: mochilaLista
+    };
+
+    const blob = new Blob([JSON.stringify(treinador, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${treinador.nome || "treinador"}.json`;
+    a.click();
+
+    URL.revokeObjectURL(url);
+}
+
+function carregarTreinador() {
+    const input = document.getElementById("uploadTreinador");
+    const file = input.files[0];
+
+    if (!file) {
+        alert("Selecione um arquivo para carregar.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const dados = JSON.parse(e.target.result);
+
+        document.getElementById("nomedopersonagem").value = dados.nome || "";
+        document.getElementById("idade").value = dados.idade || "";
+        document.getElementById("genero").value = dados.genero || "";
+
+        document.getElementById("agilidade").value = dados.atributos?.agilidade || "";
+        document.getElementById("força").value = dados.atributos?.forca || "";
+        document.getElementById("inteligencia").value = dados.atributos?.inteligencia || "";
+        document.getElementById("vigor").value = dados.atributos?.vigor || "";
+
+        document.getElementById("tipo1").value = dados.tipos?.tipo1 || "";
+        document.getElementById("tipo2").value = dados.tipos?.tipo2 || "";
+
+        document.getElementById("mochila").value = dados.mochila || "";
+
+        alert("Ficha do treinador carregada com sucesso! Agora você pode editar e salvar novamente.");
+    };
+
+    reader.readAsText(file);
+}
+
+
+        function baixarPokemon() {
+    const pokemon = {
+        nome: document.getElementById('pokemonNome').value,
+        genero: document.getElementById('pokemonGenero').value,
+        nivel: document.getElementById('pokemonNivel').value,
+        experiencia: document.getElementById('pokemonExperiencia').value,
+        felicidade: document.getElementById('pokemonFelicidade').value,
+        gmax: document.getElementById('pokemonGmax').value,
+        tipo1: document.getElementById('pokemonTipo1').value,
+        tipo2: document.getElementById('pokemonTipo2').value,
+        tera: document.getElementById('pokemonTera').value,
+        natureza: document.getElementById('pokemonNatureza').value,
+        habilidade: document.getElementById('pokemonHabilidade').value,
+        item: {
+            nome: document.getElementById('itemNome').value,
+            descricao: document.getElementById('itemDescricao').value,
+        },
+        atributos: {
+            hp: document.getElementById('pokemonHP').value,
+            atk: document.getElementById('pokemonAtk').value,
+            def: document.getElementById('pokemonDef').value,
+            spa: document.getElementById('pokemonSpA').value,
+            spd: document.getElementById('pokemonSpD').value,
+            spe: document.getElementById('pokemonSpd').value,
+        },
+        evs: {
+            hp: document.getElementById('pokemonHPEVs').value,
+            atk: document.getElementById('pokemonAtkEVs').value,
+            def: document.getElementById('pokemonDefEVs').value,
+            spa: document.getElementById('pokemonSpAEVs').value,
+            spd: document.getElementById('pokemonSpDEVs').value,
+            spe: document.getElementById('pokemonSpdEVs').value,
+        },
+        ivs: {
+            hp: document.getElementById('pokemonHPIVs').value,
+            atk: document.getElementById('pokemonAtkIVs').value,
+            def: document.getElementById('pokemonDefIVs').value,
+            spa: document.getElementById('pokemonSpAIVs').value,
+            spd: document.getElementById('pokemonSpDIVs').value,
+            spe: document.getElementById('pokemonSpdIVs').value,
+        },
+        bonus: {
+            hp: document.getElementById('pokemonHPBonûs').value,
+            atk: document.getElementById('pokemonAtkBonûs').value,
+            def: document.getElementById('pokemonDefBonûs').value,
+            spa: document.getElementById('pokemonSpABonûs').value,
+            spd: document.getElementById('pokemonSpDBonûs').value,
+            spe: document.getElementById('pokemonSpdBonûs').value,
+        },
+
+                ataques: []
+            };
+
+            const imagem = document.getElementById('pokemonImagem').files[0];
+            const itemFoto = document.getElementById('itemFoto').files[0];
+
+            const ataques = document.querySelectorAll('#ataquesContainer .ataque');
+            ataques.forEach(ataque => {
+                pokemon.ataques.push({
+                    nome: ataque.querySelector('.ataqueNome').value,
+                    dano: ataque.querySelector('.ataqueDano').value,
+                    tipo: ataque.querySelector('.ataqueTipo').value,
+                    classe: ataque.querySelector('.ataqueClasse').value,
+                    descricao: ataque.querySelector('.ataqueDescricao').value
+                });
+            });
+
+            const reader1 = new FileReader();
+            reader1.onload = function () {
+                pokemon.imagem = reader1.result;
+
+                const reader2 = new FileReader();
+                reader2.onload = function () {
+                    pokemon.item.foto = reader2.result;
+
+                    const blob = new Blob([JSON.stringify(pokemon, null, 2)], { type: "application/json" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = pokemon.nome + ".json";
+                    a.click();
+                    URL.revokeObjectURL(url);
+                };
+
+                if (itemFoto) {
+                    reader2.readAsDataURL(itemFoto);
+                } else {
+                    pokemon.item.foto = "";
+                    const blob = new Blob([JSON.stringify(pokemon, null, 2)], { type: "application/json" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = pokemon.nome + ".json";
+                    a.click();
+                    URL.revokeObjectURL(url);
+                }
+            };
+
+            if (imagem) {
+                reader1.readAsDataURL(imagem);
+            } else {
+                pokemon.imagem = "";
+                const blob = new Blob([JSON.stringify(pokemon, null, 2)], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = pokemon.nome + ".json";
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+        }
+
+        function carregarPokemon() {
+    const fileInput = document.getElementById('uploadPokemon');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert("Por favor, selecione um arquivo JSON.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const conteudo = e.target.result;
+        const pokemon = JSON.parse(conteudo);
+
+        const menu = document.getElementById('menuPokemons');
+        const exibicao = document.getElementById('pokemonExibido');
+
+        const container = document.createElement('div');
+        container.classList.add('pokemonMenuItem');
+        container.style.position = 'relative';
+
+        const botaoPokemon = document.createElement('button');
+        botaoPokemon.innerHTML = `<img src="${pokemon.imagem}" alt="${pokemon.nome}" style="width: 100px; height: 100px;">`;
+        botaoPokemon.style.border = "none";
+        botaoPokemon.style.background = "none";
+        botaoPokemon.style.cursor = "pointer";
+
+        botaoPokemon.onclick = function () {
+            exibicao.innerHTML = `
+                <h3>Editar Ficha de ${pokemon.nome}</h3>
+                <label>Nome: <input type="text" id="editNome" value="${pokemon.nome}"></label><br>
+                <label>Gênero: <input type="text" id="editGenero" value="${pokemon.genero}"></label><br>
+                <label>Nível: <input type="number" id="editNivel" value="${pokemon.nivel}"></label><br>
+                <label>Experiência: <input type="number" id="editXp" value="${pokemon.experiencia}"></label><br>
+                <label>Felicidade: <input type="number" id="editFelicidade" value="${pokemon.felicidade}"></label><br>
+                <label>Gmax: <input type="text" id="editGmax" value="${pokemon.gmax}"></label><br>
+
+                <label>Tipo 1: <input type="text" id="editTipo1" value="${pokemon.tipo1}"></label><br>
+                <label>Tipo 2: <input type="text" id="editTipo2" value="${pokemon.tipo2}"></label><br>
+                <label>Tipo Tera: <input type="text" id="editTera" value="${pokemon.tera}"></label><br>
+
+                <label>Natureza: <input type="text" id="editNatureza" value="${pokemon.natureza}"></label><br>
+                <label>Habilidade: <input type="text" id="editHabilidade" value="${pokemon.habilidade}"></label><br>
+
+                <h4>Item</h4>
+                <label>Nome: <input type="text" id="editItemNome" value="${pokemon.item.nome}"></label><br>
+                <label>Descrição: <textarea id="editItemDescricao">${pokemon.item.descricao}</textarea></label><br>
+                <label>Imagem do Item: <input type="file" id="editItemFoto" accept="image/*"></label><br>
+                <img src="${pokemon.item.foto}" alt="Item" style="max-height: 80px"><br>
+
+                <h4>Imagem do Pokémon</h4>
+                <label>Nova Imagem: <input type="file" id="editImagem" accept="image/*"></label><br>
+                <img src="${pokemon.imagem}" alt="Imagem do Pokémon" style="max-height: 150px"><br>
+                <h3><input type="text" value="${pokemon.nome}" id="editNome"></h3>
+                <img src="${pokemon.imagem}" alt="${pokemon.nome}" class="pokemon-img" style="max-width: 150px;"/>
+
+                <h4>Atributos</h4>
+                <ul>
+                    <li>HP: <input type="number" value="${pokemon.atributos.hp}" id="editHp"></li>
+                    <li>Atk: <input type="number" value="${pokemon.atributos.atk}" id="editAtk"></li>
+                    <li>Def: <input type="number" value="${pokemon.atributos.def}" id="editDef"></li>
+                    <li>SpA: <input type="number" value="${pokemon.atributos.spa}" id="editSpa"></li>
+                    <li>SpD: <input type="number" value="${pokemon.atributos.spd}" id="editSpd"></li>
+                    <li>Spd: <input type="number" value="${pokemon.atributos.spe}" id="editSpe"></li>
+                </ul>
+
+                <h4>EVs</h4>
+                <ul>
+                    <li>HP: <input type="number" value="${pokemon.evs.hp}" id="editHpEv"></li>
+                    <li>Atk: <input type="number" value="${pokemon.evs.atk}" id="editAtkEv"></li>
+                    <li>Def: <input type="number" value="${pokemon.evs.def}" id="editDefEv"></li>
+                    <li>SpA: <input type="number" value="${pokemon.evs.spa}" id="editSpaEv"></li>
+                    <li>SpD: <input type="number" value="${pokemon.evs.spd}" id="editSpdEv"></li>
+                    <li>Spd: <input type="number" value="${pokemon.evs.spe}" id="editSpeEv"></li>
+                </ul>
+
+                <h4>IVs</h4>
+                <ul>
+                    <li>HP: <input type="number" value="${pokemon.ivs.hp}" id="editHpIv"></li>
+                    <li>Atk: <input type="number" value="${pokemon.ivs.atk}" id="editAtkIv"></li>
+                    <li>Def: <input type="number" value="${pokemon.ivs.def}" id="editDefIv"></li>
+                    <li>SpA: <input type="number" value="${pokemon.ivs.spa}" id="editSpaIv"></li>
+                    <li>SpD: <input type="number" value="${pokemon.ivs.spd}" id="editSpdIv"></li>
+                    <li>Spd: <input type="number" value="${pokemon.ivs.spe}" id="editSpeIv"></li>
+                </ul>
+
+                <h4>Bônus</h4>
+                <ul>
+                    <li>HP: <input type="number" value="${pokemon.bonus.hp}" id="editHpBonus"></li>
+                    <li>Atk: <input type="number" value="${pokemon.bonus.atk}" id="editAtkBonus"></li>
+                    <li>Def: <input type="number" value="${pokemon.bonus.def}" id="editDefBonus"></li>
+                    <li>SpA: <input type="number" value="${pokemon.bonus.spa}" id="editSpaBonus"></li>
+                    <li>SpD: <input type="number" value="${pokemon.bonus.spd}" id="editSpdBonus"></li>
+                    <li>Spd: <input type="number" value="${pokemon.bonus.spe}" id="editSpeBonus"></li>
+                </ul>
+
+                <h4>Ataques</h4>
+                <div id="ataquesEdit">
+                    ${pokemon.ataques.map((ataque, index) => `
+                        <div>
+                            Nome: <input type="text" value="${ataque.nome}" class="atkNome"><br>
+                            Dano: <input type="text" value="${ataque.dano}" class="atkDano"><br>
+                            Tipo: <input type="text" value="${ataque.tipo}" class="atkTipo"><br>
+                            Classe: <input type="text" value="${ataque.classe}" class="atkClasse"><br>
+                            Descrição: <textarea class="atkDesc">${ataque.descricao}</textarea><br><br>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <button onclick="salvarAlteracoes('${pokemon.nome}')">Salvar Alterações</button>
+                <button onclick="document.getElementById('pokemonExibido').innerHTML = ''">Fechar Ficha</button>
+            `;
+        };
+
+        const btnRemover = document.createElement('span');
+        btnRemover.innerText = "✖";
+        btnRemover.title = "Remover Pokémon";
+        btnRemover.style.position = "absolute";
+        btnRemover.style.top = "0";
+        btnRemover.style.right = "0";
+        btnRemover.style.cursor = "pointer";
+        btnRemover.style.color = "red";
+        btnRemover.style.fontSize = "16px";
+
+        btnRemover.onclick = () => {
+            exibicao.innerHTML = '';
+            container.remove();
+        };
+
+        container.appendChild(botaoPokemon);
+        container.appendChild(btnRemover);
+        menu.appendChild(container);
+    };
+
+    reader.readAsText(file);
+}
+
+function salvarAlteracoes(nomeOriginal) {
+    const pokemon = {
+        nome: document.getElementById('editNome').value,
+        imagem: document.querySelector('#pokemonExibido img').src,
+        atributos: {
+            hp: document.getElementById('editHp').value,
+            atk: document.getElementById('editAtk').value,
+            def: document.getElementById('editDef').value,
+            spa: document.getElementById('editSpa').value,
+            spd: document.getElementById('editSpd').value,
+            spe: document.getElementById('editSpe').value,
+        },
+        evs: {
+            hp: document.getElementById('editHpEv').value,
+            atk: document.getElementById('editAtkEv').value,
+            def: document.getElementById('editDefEv').value,
+            spa: document.getElementById('editSpaEv').value,
+            spd: document.getElementById('editSpdEv').value,
+            spe: document.getElementById('editSpeEv').value,
+        },
+        ivs: {
+            hp: document.getElementById('editHpIv').value,
+            atk: document.getElementById('editAtkIv').value,
+            def: document.getElementById('editDefIv').value,
+            spa: document.getElementById('editSpaIv').value,
+            spd: document.getElementById('editSpdIv').value,
+            spe: document.getElementById('editSpeIv').value,
+        },
+        bonus: {
+            hp: document.getElementById('editHpBonus').value,
+            atk: document.getElementById('editAtkBonus').value,
+            def: document.getElementById('editDefBonus').value,
+            spa: document.getElementById('editSpaBonus').value,
+            spd: document.getElementById('editSpdBonus').value,
+            spe: document.getElementById('editSpeBonus').value,
+        },
+        ataques: []
+    };
+
+    document.querySelectorAll('#ataquesEdit div').forEach(ataqueDiv => {
+        pokemon.ataques.push({
+            nome: ataqueDiv.querySelector('.atkNome').value,
+            dano: ataqueDiv.querySelector('.atkDano').value,
+            tipo: ataqueDiv.querySelector('.atkTipo').value,
+            classe: ataqueDiv.querySelector('.atkClasse').value,
+            descricao: ataqueDiv.querySelector('.atkDesc').value
+        });
+    });
+
+    const blob = new Blob([JSON.stringify(pokemon, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = pokemon.nome + ".json";
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+
+    </script>
+</body>
+</html>
